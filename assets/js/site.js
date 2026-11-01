@@ -1,0 +1,151 @@
+/* ─────────────────────────────── Réglages du site ───────────────────────────────
+   Ce sont les seules lignes à modifier. Laisser "" pour une option non utilisée. */
+const REGLAGES = {
+  // Adresse qui reçoit le formulaire de contact (ex. Formspree : "https://formspree.io/f/abcdwxyz").
+  formulaire: "",
+  // Votre email : affiché en secours si l'envoi échoue, et utilisé tant que "formulaire" est vide.
+  email: "",
+  // Lien de prise de rendez-vous (Cal.com, Calendly). Vide : les boutons mènent au formulaire.
+  rendezVous: "",
+  // Vidéos de démo (Loom…). Vides : la section « Démos » reste masquée.
+  demoContenu: "",
+  demoAutomatisation: "",
+  // Profils
+  linkedin: "",
+  x: "",
+};
+
+(function () {
+  "use strict";
+  const R = Object.assign({}, REGLAGES, window.REGLAGES_TEST || {});
+
+  // ── Liens de rendez-vous, démos, réseaux ──
+  if (R.rendezVous) {
+    document.querySelectorAll("[data-rdv]").forEach((a) => {
+      a.href = R.rendezVous;
+      a.target = "_blank";
+      a.rel = "noopener";
+    });
+    const bloc = document.querySelector("[data-rdv-bloc]");
+    if (bloc) {
+      bloc.querySelector("[data-rdv-lien]").href = R.rendezVous;
+      bloc.hidden = false;
+    }
+  }
+
+  const demos = { contenu: R.demoContenu, automatisation: R.demoAutomatisation };
+  let auMoinsUneDemo = false;
+  document.querySelectorAll("[data-demo]").forEach((a) => {
+    const lien = demos[a.dataset.demo];
+    if (lien) {
+      a.href = lien;
+      a.hidden = false;
+      auMoinsUneDemo = true;
+    }
+  });
+  if (auMoinsUneDemo) document.getElementById("demos").hidden = false;
+
+  document.querySelectorAll("[data-reseau]").forEach((a) => {
+    const lien = R[a.dataset.reseau];
+    if (lien) {
+      a.href = lien;
+      a.hidden = false;
+    }
+  });
+
+  document.querySelectorAll("[data-annee]").forEach((el) => (el.textContent = new Date().getFullYear()));
+
+  // ── Formulaire de contact ──
+  const form = document.getElementById("formulaire");
+  if (!form) return;
+  const statut = document.getElementById("statut");
+  const bouton = form.querySelector('button[type="submit"]');
+
+  const afficher = (message, etat) => {
+    statut.textContent = message;
+    statut.dataset.etat = etat || "";
+  };
+  const contactSecours = () => (R.email ? ` ou écrivez directement à ${R.email}` : "");
+
+  const champsValides = () => {
+    let premierInvalide = null;
+    form.querySelectorAll("input[required], textarea[required]").forEach((champ) => {
+      const valide = champ.checkValidity() && champ.value.trim() !== "";
+      champ.setAttribute("aria-invalid", valide ? "false" : "true");
+      if (!valide && !premierInvalide) premierInvalide = champ;
+    });
+    if (premierInvalide) {
+      premierInvalide.focus();
+      const libelle = form.querySelector(`label[for="${premierInvalide.id}"]`);
+      const nom = libelle ? libelle.textContent.replace(/\s*\(.*\)\s*/, "").trim() : "ce champ";
+      afficher(
+        premierInvalide.type === "email" && premierInvalide.value.trim()
+          ? "Vérifiez votre adresse email."
+          : `Merci de remplir : ${nom}.`,
+        "erreur"
+      );
+      return false;
+    }
+    return true;
+  };
+
+  const remercier = () => {
+    const prenom = (form.elements.nom.value.trim().split(/\s+/)[0] || "").slice(0, 40);
+    form.classList.add("formulaire--envoye");
+    form.innerHTML = "";
+    const titre = document.createElement("h3");
+    titre.textContent = prenom ? `Merci ${prenom}, votre message est bien parti.` : "Merci, votre message est bien parti.";
+    const texte = document.createElement("p");
+    texte.textContent = "Je vous réponds sous 24 heures ouvrées, à l'adresse email indiquée.";
+    form.append(titre, texte);
+    titre.setAttribute("tabindex", "-1");
+    titre.focus();
+  };
+
+  form.addEventListener("input", (e) => {
+    if (e.target.getAttribute("aria-invalid") === "true" && e.target.checkValidity() && e.target.value.trim()) {
+      e.target.setAttribute("aria-invalid", "false");
+    }
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!champsValides()) return;
+
+    // Champ piège rempli : c'est un robot. On fait comme si de rien n'était.
+    if (form.elements._gotcha.value) {
+      remercier();
+      return;
+    }
+
+    const donnees = new FormData(form);
+
+    // Pas encore de service de formulaire : on ouvre la messagerie du visiteur.
+    if (!R.formulaire) {
+      if (R.email) {
+        const sujet = `Demande depuis le site : ${donnees.get("besoin")}`;
+        const corps = `${donnees.get("message")}\n\n${donnees.get("nom")}\n${donnees.get("entreprise") || ""}\n${donnees.get("email")}`;
+        window.location.href = `mailto:${R.email}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
+        afficher("Votre messagerie s'ouvre avec le message prêt à envoyer.", "ok");
+      } else {
+        afficher("Le formulaire n'est pas encore relié : renseignez « formulaire » ou « email » dans assets/js/site.js.", "erreur");
+      }
+      return;
+    }
+
+    bouton.disabled = true;
+    afficher("Envoi en cours…");
+    try {
+      const reponse = await fetch(R.formulaire, {
+        method: "POST",
+        body: donnees,
+        headers: { Accept: "application/json" },
+      });
+      if (!reponse.ok) throw new Error(`HTTP ${reponse.status}`);
+      remercier();
+    } catch (erreur) {
+      bouton.disabled = false;
+      afficher(`Le message n'a pas pu partir. Réessayez dans un instant${contactSecours()}.`, "erreur");
+    }
+  });
+})();
