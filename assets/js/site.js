@@ -129,6 +129,38 @@ const REGLAGES = {
     return true;
   };
 
+  // Toutes les informations saisies, sous plusieurs noms : elles apparaissent dans l'email
+  // aussi bien avec le modèle EmailJS par défaut ({{name}}, {{title}}, {{message}}…)
+  // qu'avec un modèle personnalisé ({{nom}}, {{besoin}}, {{message_seul}}…).
+  const recapitulatif = (donnees) => {
+    const champ = (nom, defaut = "(non précisé)") => (donnees.get(nom) || "").toString().trim() || defaut;
+    const infos = {
+      nom: champ("nom"),
+      email: champ("email"),
+      entreprise: champ("entreprise"),
+      besoin: champ("besoin"),
+      message_seul: champ("message"),
+    };
+    const date = new Date().toLocaleString("fr-FR", { dateStyle: "full", timeStyle: "short" });
+    return Object.assign({}, infos, {
+      name: infos.nom,
+      title: infos.besoin,
+      time: date,
+      date: date,
+      reply_to: infos.email,
+      message: [
+        `Nom et prénom : ${infos.nom}`,
+        `Email : ${infos.email}`,
+        `Métier ou entreprise : ${infos.entreprise}`,
+        `Besoin : ${infos.besoin}`,
+        `Envoyé le : ${date}`,
+        "",
+        "Message :",
+        infos.message_seul,
+      ].join("\n"),
+    });
+  };
+
   const remercier = () => {
     const prenom = (form.elements.nom.value.trim().split(/\s+/)[0] || "").slice(0, 40);
     form.classList.add("formulaire--envoye");
@@ -191,13 +223,7 @@ const REGLAGES = {
               service_id: ej.service,
               template_id: ej.modele,
               user_id: ej.cle,
-              template_params: {
-                nom: donnees.get("nom"),
-                email: donnees.get("email"),
-                entreprise: donnees.get("entreprise") || "(non précisé)",
-                besoin: donnees.get("besoin"),
-                message: donnees.get("message"),
-              },
+              template_params: recapitulatif(donnees),
             }),
           })
         : await fetch(R.formulaire, {

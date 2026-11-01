@@ -28,7 +28,7 @@ Tous les réglages sont en haut de [`assets/js/site.js`](assets/js/site.js) :
 
 Les messages partent directement depuis le site vers **stratos001ai@gmail.com**, via [EmailJS](https://www.emailjs.com) (service Gmail). Les identifiants sont dans le réglage `emailjs` de `assets/js/site.js` : Service ID, Template ID et Public Key (publics par conception ; ne jamais y mettre la Private Key).
 
-Le modèle EmailJS utilise les variables `{{nom}}`, `{{email}}`, `{{entreprise}}`, `{{besoin}}` et `{{message}}`. Mettre `{{email}}` en « Reply To » pour répondre directement au visiteur.
+Le site envoie toutes les informations saisies : `{{message}}` contient le récapitulatif complet (nom, email, métier, besoin, date, message), ce qui suffit avec le modèle par défaut d'EmailJS. Variables disponibles pour un modèle personnalisé : `{{nom}}`, `{{email}}`, `{{entreprise}}`, `{{besoin}}`, `{{message_seul}}`, `{{date}}` (et `{{name}}`, `{{title}}`, `{{time}}`, `{{reply_to}}` pour le modèle par défaut). Mettre `{{email}}` en « Reply To » pour répondre directement au visiteur.
 
 Sécurité : dans EmailJS, **Account → Security**, limiter l'envoi au domaine du site (`equationstratos.github.io`).
 
