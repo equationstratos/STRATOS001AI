@@ -162,11 +162,12 @@ const REGLAGES = {
   };
 
   const remercier = () => {
-    const prenom = (form.elements.nom.value.trim().split(/\s+/)[0] || "").slice(0, 40);
+    // Nom complet, tel que saisi (espaces multiples ramenés à un seul)
+    const nomComplet = form.elements.nom.value.trim().replace(/\s+/g, " ").slice(0, 80);
     form.classList.add("formulaire--envoye");
     form.innerHTML = "";
     const titre = document.createElement("h3");
-    titre.textContent = prenom ? `Merci ${prenom}, votre message est bien parti.` : "Merci, votre message est bien parti.";
+    titre.textContent = nomComplet ? `Merci ${nomComplet}, votre message est bien parti.` : "Merci, votre message est bien parti.";
     const texte = document.createElement("p");
     texte.textContent = "Je vous réponds sous 24 heures ouvrées, à l'adresse email indiquée.";
     form.append(titre, texte);
