@@ -50,7 +50,8 @@ const REGLAGES = {
       auMoinsUneDemo = true;
     }
   });
-  if (auMoinsUneDemo) document.getElementById("demos").hidden = false;
+  const sectionDemos = document.getElementById("demos");
+  if (auMoinsUneDemo && sectionDemos) sectionDemos.hidden = false;
 
   document.querySelectorAll("[data-reseau]").forEach((a) => {
     const lien = R[a.dataset.reseau];

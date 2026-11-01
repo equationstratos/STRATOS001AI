@@ -279,6 +279,113 @@ p { margin: 0 0 1rem; }
 .page-texte strong { color: var(--texte); }
 .a-completer { color: #ffb86b; font-weight: 700; }
 
+/* ───────────────────────── Page Réalisations (portfolio) ───────────────────────── */
+.entete__nav a[aria-current="page"] { color: var(--texte); text-decoration: underline; text-decoration-color: var(--cyan); text-underline-offset: 8px; text-decoration-thickness: 2px; }
+.pf-hero h1 { max-width: 15em; }
+.pf-hero .hero__intro { max-width: 42em; }
+
+/* Chiffres clés */
+.pf-chiffres {
+  list-style: none; padding: 0; margin: 2.5rem 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--bord); border-radius: 12px; background: rgba(12, 17, 27, 0.7);
+}
+.pf-chiffres li { padding: 20px 22px; border-left: 1px solid var(--bord); }
+.pf-chiffres li:first-child { border-left: 0; }
+.pf-chiffres strong {
+  display: block; margin-bottom: 6px; font: 700 clamp(1.8rem, 3.4vw, 2.5rem)/1 var(--titres); letter-spacing: -0.02em;
+  background: var(--argent); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.pf-chiffres span { color: var(--texte-2); font-size: 0.92rem; }
+.pf-outils { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 1.5rem 0 0; color: var(--texte-2); font-size: 0.95rem; }
+
+/* Badge de l'outil d'IA utilisé */
+.pf-badge {
+  display: inline-flex; align-items: center; gap: 7px; padding: 4px 11px 4px 9px; border-radius: 99px;
+  font: 700 0.72rem/1.2 var(--texte-police); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+  color: var(--cyan); background: rgba(10, 108, 255, 0.12); border: 1px solid rgba(58, 157, 255, 0.35);
+}
+.pf-badge::before { content: ""; width: 6px; height: 6px; background: var(--cyan); transform: rotate(45deg); box-shadow: 0 0 8px var(--cyan); }
+
+/* Projets : texte et visuel en alternance */
+.pf-projets { padding-top: clamp(16px, 3vw, 32px); }
+.pf-projet {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center;
+  padding: clamp(44px, 6vw, 80px) 0;
+}
+.pf-projet + .pf-projet { border-top: 1px solid var(--bord); }
+.pf-projet:last-child { padding-bottom: 0; }
+.pf-projet--inverse .pf-projet__texte { order: 2; }
+.pf-projet__num {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-bottom: 14px;
+  font: 700 0.8rem/1.2 var(--texte-police); letter-spacing: 0.14em; text-transform: uppercase; color: var(--texte-2);
+}
+.pf-projet h3 { font-size: clamp(1.55rem, 2.7vw, 2.05rem); margin-bottom: 0.9rem; }
+.pf-projet__texte > p:not(.pf-projet__num):not(.pf-benefice) { color: var(--texte-2); }
+.pf-points { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; gap: 8px; }
+.pf-points li { position: relative; padding-left: 22px; font-size: 0.98rem; }
+.pf-points li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 6px; height: 6px; background: var(--cyan); transform: rotate(45deg); box-shadow: 0 0 8px var(--cyan); }
+.pf-benefice { margin: 0; padding: 14px 18px; border-left: 3px solid var(--bleu); border-radius: 6px; background: rgba(10, 108, 255, 0.08); }
+.pf-benefice strong { color: var(--cyan); }
+.pf-projet__visuel { position: relative; min-width: 0; margin: 0; }
+
+/* Visuel : étapes d'un système */
+.pf-flux {
+  list-style: none; margin: 0; padding: 30px 28px; counter-reset: etape;
+  background: linear-gradient(160deg, rgba(10, 108, 255, 0.1), rgba(12, 17, 27, 0.95) 45%);
+  border: 1px solid var(--bord-fort); border-radius: 14px; box-shadow: var(--halo);
+}
+.pf-flux li { position: relative; display: flex; flex-direction: column; padding: 0 0 24px 48px; counter-increment: etape; }
+.pf-flux li:last-child { padding-bottom: 0; }
+.pf-flux li::before {
+  content: counter(etape); position: absolute; left: 0; top: -2px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+  font: 700 0.85rem/1 var(--titres); color: var(--cyan); background: rgba(10, 108, 255, 0.16); border: 1px solid rgba(58, 157, 255, 0.5);
+}
+.pf-flux li:not(:last-child)::after { content: ""; position: absolute; left: 15px; top: 32px; bottom: 4px; width: 1px; background: linear-gradient(180deg, var(--bleu-clair), var(--bord)); }
+.pf-flux span { font: 700 1.08rem/1.3 var(--titres); }
+.pf-flux small { color: var(--texte-2); font-size: 0.9rem; }
+.pf-flux .pf-flux__fin::before { content: "✓"; color: #fff; border-color: transparent; background: linear-gradient(180deg, var(--bleu-clair), var(--bleu)); box-shadow: 0 0 16px rgba(10, 108, 255, 0.8); }
+.pf-flux--etapes li::before { content: ""; left: 9px; top: 5px; width: 13px; height: 13px; border-radius: 2px; transform: rotate(45deg); }
+.pf-flux--etapes .pf-flux__fin::before { content: ""; }
+
+/* Visuel : terminal */
+.pf-terminal {
+  position: relative; margin: 0; padding: 50px 24px 24px; overflow-x: auto;
+  font: 400 0.84rem/1.6 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; color: var(--texte-2);
+  background: #070a12; border: 1px solid var(--bord-fort); border-radius: 14px; box-shadow: var(--halo);
+}
+.pf-terminal__barre { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 7px; height: 32px; padding: 0 14px; border-bottom: 1px solid var(--bord); }
+.pf-terminal__barre i { width: 10px; height: 10px; border-radius: 50%; background: var(--bord-fort); }
+.pf-terminal b { color: var(--texte); }
+.pf-terminal em { font-style: normal; color: var(--cyan); }
+
+/* Visuel : capture dans une fenêtre */
+.pf-capture {
+  padding-top: 30px; overflow: hidden; background: var(--carte);
+  border: 1px solid var(--bord-fort); border-radius: 14px; box-shadow: var(--halo);
+}
+.pf-capture::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 30px; border-bottom: 1px solid var(--bord);
+  background:
+    radial-gradient(circle at 19px 15px, var(--bord-fort) 4.5px, transparent 5.5px),
+    radial-gradient(circle at 36px 15px, var(--bord-fort) 4.5px, transparent 5.5px),
+    radial-gradient(circle at 53px 15px, var(--bord-fort) 4.5px, transparent 5.5px);
+}
+.pf-capture img { width: 100%; }
+
+/* Compétences */
+.pf-competences { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 2.25rem; }
+.pf-competence { padding: 24px; background: var(--carte); border: 1px solid var(--bord); border-top: 2px solid var(--bleu); border-radius: 10px; }
+.pf-competence h3 { margin-bottom: 16px; }
+.pf-tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pf-tags li { padding: 5px 12px; border: 1px solid var(--bord-fort); border-radius: 99px; background: rgba(255, 255, 255, 0.025); font-size: 0.88rem; line-height: 1.4; }
+
+/* Appel final */
+.pf-fin { padding-top: 0; }
+.pf-fin__bloc { margin-top: 0; padding: clamp(26px, 4vw, 44px); }
+.pf-fin__bloc > div { flex: 1 1 420px; }
+.pf-fin__bloc h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.5rem; }
+.pf-fin__bloc p { margin: 0; }
+
 /* ───────────────────────── Écrans moyens et petits ───────────────────────── */
 @media (max-width: 960px) {
   .hero__grille, .contact { grid-template-columns: minmax(0, 1fr); }
@@ -287,10 +394,17 @@ p { margin: 0 0 1rem; }
   .capacites { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .entete__nav { display: none; }
   .entete .bouton { margin-left: auto; }
+  .pf-projet { grid-template-columns: minmax(0, 1fr); }
+  .pf-projet--inverse .pf-projet__texte { order: 0; }
+  .pf-projet__visuel { max-width: 620px; }
+  .pf-competences { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 720px) {
-  .capacites, .metier__exemples { grid-template-columns: minmax(0, 1fr); }
+  .capacites, .metier__exemples, .pf-competences { grid-template-columns: minmax(0, 1fr); }
   .metiers__onglets { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; }
+  .pf-chiffres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pf-chiffres li:nth-child(odd) { border-left: 0; }
+  .pf-chiffres li:nth-child(n+3) { border-top: 1px solid var(--bord); }
 }
 @media (max-width: 560px) {
   body { font-size: 1rem; }
@@ -299,6 +413,9 @@ p { margin: 0 0 1rem; }
   .formulaire { grid-template-columns: minmax(0, 1fr); padding: 20px; }
   .hero__actions .bouton { flex: 1 1 100%; }
   .pied__reseaux { margin-left: 0 !important; }
+  .pf-chiffres li { padding: 16px; }
+  .pf-flux { padding: 24px 20px; }
+  .pf-terminal { padding: 46px 16px 18px; font-size: 0.74rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

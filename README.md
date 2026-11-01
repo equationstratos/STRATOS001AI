@@ -40,14 +40,24 @@ Le formulaire contient un champ piège (`_honey`) contre les robots. Si `emailjs
 - [ ] **`assets/js/site.js`** : `rendezVous` (le formulaire est déjà relié).
 - [ ] **`index.html`** : retirer la ligne « Tarif fondateur… » (repérée par un commentaire) après les trois premiers clients.
 
+## Page Réalisations (portfolio)
+
+`realisations.html` présente les projets, les compétences et ce qu'ils apportent à un client.
+
+**Ajouter un projet** (par exemple réalisé avec une autre IA) : dans `realisations.html`, copier un bloc complet `<article class="pf-projet"> … </article>` et le coller à la suite. Changer le numéro, le titre, les textes et le badge `<span class="pf-badge">Claude</span>` (ex. `ChatGPT`, `Midjourney`). Alterner `pf-projet` et `pf-projet pf-projet--inverse` pour que le visuel change de côté. Pour une image, la placer dans `assets/img/realisations/` et reprendre un bloc avec `<figure class="pf-projet__visuel pf-capture">`.
+
+Penser à mettre à jour les chiffres en haut de page (`pf-chiffres`), le titre « Six projets… » et le badge « Réalisé avec » s'il y a d'autres outils.
+
 ## Structure
 
 ```
 index.html               Page d'accueil
+realisations.html        Réalisations (portfolio)
 mentions-legales.html    Mentions légales et confidentialité
 assets/css/style.css     Styles (couleurs relevées sur le logo, en haut du fichier)
 assets/js/site.js        Réglages et envoi du formulaire
 assets/img/              Logo (fond transparent), icônes, image de partage
+assets/img/realisations/ Visuels de la page Réalisations
 assets/fonts/            Polices Outfit et Instrument Sans (licence SIL Open Font License)
 ```
 
