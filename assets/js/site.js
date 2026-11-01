@@ -13,7 +13,7 @@ const REGLAGES = {
   demoAutomatisation: "",
   // Profils
   linkedin: "",
-  x: "@stratos001ai",
+  x: "https://x.com/stratos001ai",
 };
 
 (function () {
