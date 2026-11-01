@@ -151,6 +151,8 @@ p { margin: 0 0 1rem; }
 /* ───────────────────────── Sections ───────────────────────── */
 .section { padding: clamp(64px, 9vw, 112px) 0; }
 .section--sombre { background: var(--fond-2); border-block: 1px solid var(--bord); }
+.section--creation { border-top: 1px solid var(--bord); }
+.section__intro { color: var(--texte-2); max-width: 46em; margin: -0.5rem 0 0; }
 
 /* Services : ce qui peut être automatisé */
 .capacites { list-style: none; padding: 0; margin: 2.25rem 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
