@@ -96,6 +96,23 @@ const REGLAGES = {
     choisir(0, false);
   });
 
+  // ── Page « Tous les projets » : filtres par domaine (sans JavaScript, tout s'affiche) ──
+  document.querySelectorAll("[data-filtres]").forEach((zone) => {
+    const boutons = [...zone.querySelectorAll("[data-filtre]")];
+    const domaines = [...document.querySelectorAll("[data-domaine]")];
+    boutons.forEach((bouton) => {
+      bouton.addEventListener("click", () => {
+        const choix = bouton.dataset.filtre;
+        boutons.forEach((b) => b.setAttribute("aria-pressed", String(b === bouton)));
+        domaines.forEach((d) => (d.hidden = choix !== "tous" && d.dataset.domaine !== choix));
+        // Revenir en haut de la liste si on l'a dépassée
+        const haut = zone.parentElement.getBoundingClientRect().top;
+        if (haut < 0) zone.parentElement.scrollIntoView({ block: "start" });
+      });
+    });
+    zone.hidden = false;
+  });
+
   // ── Formulaire de contact ──
   const form = document.getElementById("formulaire");
   if (!form) return;

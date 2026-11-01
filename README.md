@@ -48,16 +48,31 @@ Le formulaire contient un champ piège (`_honey`) contre les robots. Si `emailjs
 
 Penser à mettre à jour les chiffres en haut de page (`pf-chiffres`), le titre « Six projets… » et le badge « Réalisé avec » s'il y a d'autres outils.
 
+## Page Tous les projets
+
+`projets.html` recense tous les projets (33), classés en 6 domaines avec des filtres. Sans JavaScript, tous les domaines s'affichent.
+
+**Ajouter un projet** : copier un bloc `<article class="pj-carte"> … </article>` dans le bon domaine, puis changer :
+- l'image : `assets/img/projets/nom.jpg`, au format 800 × 500 (ou garder une icône avec `pj-carte__visuel--icone`) ;
+- le type, le titre, la description et les étiquettes (`pj-tags`) ;
+- le pied de carte : lien « Voir le code » pour un dépôt public, ou « Projet privé · démo sur demande ».
+
+Mettre ensuite à jour le nombre de projets du domaine (`pj-domaine__nombre`), le compteur du filtre correspondant et celui de « Tous », et les chiffres du haut de page. Un domaine de 4 projets utilise `pj-grille pj-grille--4` (4 colonnes) ; les autres `pj-grille` (3 colonnes).
+
+Les visuels des projets sont des captures des visualiseurs 3D et des rendus présents dans les dépôts.
+
 ## Structure
 
 ```
 index.html               Page d'accueil
-realisations.html        Réalisations (portfolio)
+realisations.html        Réalisations (portfolio détaillé)
+projets.html             Tous les projets
 mentions-legales.html    Mentions légales et confidentialité
 assets/css/style.css     Styles (couleurs relevées sur le logo, en haut du fichier)
 assets/js/site.js        Réglages et envoi du formulaire
 assets/img/              Logo (fond transparent), icônes, image de partage
 assets/img/realisations/ Visuels de la page Réalisations
+assets/img/projets/      Vignettes de la page Tous les projets (800 × 500)
 assets/fonts/            Polices Outfit et Instrument Sans (licence SIL Open Font License)
 ```
 
