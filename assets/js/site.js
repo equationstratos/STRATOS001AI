@@ -4,7 +4,7 @@ const REGLAGES = {
   // Adresse qui reçoit le formulaire de contact (ex. Formspree : "https://formspree.io/f/abcdwxyz").
   formulaire: "",
   // Votre email : affiché en secours si l'envoi échoue, et utilisé tant que "formulaire" est vide.
-  email: "",
+  email: "stratos001ai@gmail.com",
   // Lien de prise de rendez-vous (Cal.com, Calendly). Vide : les boutons mènent au formulaire.
   rendezVous: "",
   // Vidéos de démo (Loom…). Vides : la section « Démos » reste masquée.
@@ -12,7 +12,7 @@ const REGLAGES = {
   demoAutomatisation: "",
   // Profils
   linkedin: "",
-  x: "",
+  x: "@stratos001ai",
 };
 
 (function () {
