@@ -2,7 +2,8 @@
    Ce sont les seules lignes à modifier. Laisser "" pour une option non utilisée. */
 const REGLAGES = {
   // Adresse qui reçoit le formulaire de contact (ex. Formspree : "https://formspree.io/f/abcdwxyz").
-  formulaire: "",
+  // FormSubmit : les messages arrivent par email. Le premier envoi déclenche un email d'activation.
+  formulaire: "https://formsubmit.co/ajax/stratos001ai@gmail.com",
   // Votre email : affiché en secours si l'envoi échoue, et utilisé tant que "formulaire" est vide.
   email: "stratos001ai@gmail.com",
   // Lien de prise de rendez-vous (Cal.com, Calendly). Vide : les boutons mènent au formulaire.
@@ -146,12 +147,16 @@ const REGLAGES = {
     if (!champsValides()) return;
 
     // Champ piège rempli : c'est un robot. On fait comme si de rien n'était.
-    if (form.elements._gotcha.value) {
+    if (form.elements._honey.value) {
       remercier();
       return;
     }
 
     const donnees = new FormData(form);
+    // Champs reconnus par FormSubmit : objet de l'email et mise en forme en tableau
+    donnees.set("_subject", `Nouvelle demande depuis le site : ${donnees.get("besoin")} (${donnees.get("nom")})`);
+    donnees.set("_template", "table");
+    donnees.set("_captcha", "false");
 
     // Pas encore de service de formulaire : on ouvre la messagerie du visiteur.
     if (!R.formulaire) {
@@ -175,6 +180,9 @@ const REGLAGES = {
         headers: { Accept: "application/json" },
       });
       if (!reponse.ok) throw new Error(`HTTP ${reponse.status}`);
+      // FormSubmit répond 200 avec {"success": "false"} quand le formulaire n'est pas encore activé.
+      const resultat = await reponse.json().catch(() => ({}));
+      if (resultat.success === false || resultat.success === "false") throw new Error(resultat.message || "refusé");
       remercier();
     } catch (erreur) {
       bouton.disabled = false;

@@ -26,18 +26,17 @@ Tous les réglages sont en haut de [`assets/js/site.js`](assets/js/site.js) :
 
 ## Formulaire de contact
 
-Le site étant statique, l'envoi passe par un service de formulaire. Exemple avec [Formspree](https://formspree.io) :
+Les messages arrivent par email à **stratos001ai@gmail.com**, via [FormSubmit](https://formsubmit.co) (gratuit, sans compte).
 
-1. Créer un compte, puis un formulaire (*New form*).
-2. Copier son adresse, de la forme `https://formspree.io/f/abcdwxyz`, dans le réglage `formulaire`.
-3. Envoyer un message de test depuis le site : Formspree demande de confirmer l'adresse email de réception lors du premier envoi.
+1. **Activation (une seule fois)** : envoyer un premier message de test depuis le site en ligne. FormSubmit envoie alors un email d'activation à stratos001ai@gmail.com : cliquer sur « Activate Form ». Les messages suivants arrivent directement.
+2. **Optionnel** : l'email d'activation propose aussi une adresse aléatoire qui masque l'email dans le code du site. Elle peut remplacer l'email dans le réglage `formulaire` de `assets/js/site.js` (`https://formsubmit.co/ajax/<chaîne aléatoire>`).
 
-L'offre gratuite de Formspree limite le nombre de messages par mois (vérifier la limite actuelle). Le formulaire contient un champ piège (`_gotcha`) contre les robots. Tout service qui accepte un envoi `POST` de formulaire et répond avec un code 200 fonctionne de la même manière.
+Le formulaire contient un champ piège (`_honey`) contre les robots. Pour changer de service (Formspree…), il suffit de modifier le réglage `formulaire`.
 
 ## À compléter avant de partager le lien
 
-- [ ] **`mentions-legales.html`** : remplacer chaque élément entre crochets, affiché en orange (nom, SIRET, adresse, email, nom du service de formulaire). Ces mentions sont obligatoires pour un site professionnel en France.
-- [ ] **`assets/js/site.js`** : au minimum `formulaire` (ou `email`) et `rendezVous`.
+- [ ] **`mentions-legales.html`** : remplacer chaque élément entre crochets, affiché en orange (nom, SIRET, adresse). Ces mentions sont obligatoires pour un site professionnel en France.
+- [ ] **`assets/js/site.js`** : `rendezVous` (le formulaire est déjà relié).
 - [ ] **`index.html`** : retirer la ligne « Tarif fondateur… » (repérée par un commentaire) après les trois premiers clients.
 
 ## Structure
