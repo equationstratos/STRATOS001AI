@@ -1,9 +1,15 @@
 /* ─────────────────────────────── Réglages du site ───────────────────────────────
    Ce sont les seules lignes à modifier. Laisser "" pour une option non utilisée. */
 const REGLAGES = {
-  // Adresse qui reçoit le formulaire de contact (ex. Formspree : "https://formspree.io/f/abcdwxyz").
-  // FormSubmit : les messages arrivent par email. Le premier envoi déclenche un email d'activation.
-  formulaire: "https://formsubmit.co/ajax/stratos001ai@gmail.com",
+  // EmailJS (emailjs.com) : le formulaire envoie l'email directement depuis le site.
+  // Ces trois identifiants sont publics par conception (jamais la « Private Key » ici).
+  emailjs: {
+    service: "service_gablvm1",
+    modele: "template_l2k93kc",
+    cle: "s29yZqc0GU1_oIRt-",
+  },
+  // Autre service de formulaire, utilisé si "emailjs" est vide (ex. "https://formspree.io/f/abcdwxyz").
+  formulaire: "",
   // Votre email : affiché en secours si l'envoi échoue, et utilisé tant que "formulaire" est vide.
   email: "stratos001ai@gmail.com",
   // Lien de prise de rendez-vous (Cal.com, Calendly). Vide : les boutons mènent au formulaire.
@@ -158,8 +164,11 @@ const REGLAGES = {
     donnees.set("_template", "table");
     donnees.set("_captcha", "false");
 
+    const ej = R.emailjs || {};
+    const avecEmailjs = Boolean(ej.service && ej.modele && ej.cle);
+
     // Pas encore de service de formulaire : on ouvre la messagerie du visiteur.
-    if (!R.formulaire) {
+    if (!avecEmailjs && !R.formulaire) {
       if (R.email) {
         const sujet = `Demande depuis le site : ${donnees.get("besoin")}`;
         const corps = `${donnees.get("message")}\n\n${donnees.get("nom")}\n${donnees.get("entreprise") || ""}\n${donnees.get("email")}`;
@@ -174,12 +183,36 @@ const REGLAGES = {
     bouton.disabled = true;
     afficher("Envoi en cours…");
     try {
-      const reponse = await fetch(R.formulaire, {
-        method: "POST",
-        body: donnees,
-        headers: { Accept: "application/json" },
-      });
-      if (!reponse.ok) throw new Error(`HTTP ${reponse.status}`);
+      const reponse = avecEmailjs
+        ? await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              service_id: ej.service,
+              template_id: ej.modele,
+              user_id: ej.cle,
+              template_params: {
+                nom: donnees.get("nom"),
+                email: donnees.get("email"),
+                entreprise: donnees.get("entreprise") || "(non précisé)",
+                besoin: donnees.get("besoin"),
+                message: donnees.get("message"),
+              },
+            }),
+          })
+        : await fetch(R.formulaire, {
+            method: "POST",
+            body: donnees,
+            headers: { Accept: "application/json" },
+          });
+      if (!reponse.ok) {
+        console.error("Envoi refusé :", reponse.status, await reponse.text().catch(() => ""));
+        throw new Error(`HTTP ${reponse.status}`);
+      }
+      if (avecEmailjs) {
+        remercier();
+        return;
+      }
       // FormSubmit répond 200 avec {"success": "false"} quand le formulaire n'est pas encore activé.
       const resultat = await reponse.json().catch(() => ({}));
       if (resultat.success === false || resultat.success === "false") throw new Error(resultat.message || "refusé");

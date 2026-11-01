@@ -26,12 +26,13 @@ Tous les réglages sont en haut de [`assets/js/site.js`](assets/js/site.js) :
 
 ## Formulaire de contact
 
-Les messages arrivent par email à **stratos001ai@gmail.com**, via [FormSubmit](https://formsubmit.co) (gratuit, sans compte).
+Les messages partent directement depuis le site vers **stratos001ai@gmail.com**, via [EmailJS](https://www.emailjs.com) (service Gmail). Les identifiants sont dans le réglage `emailjs` de `assets/js/site.js` : Service ID, Template ID et Public Key (publics par conception ; ne jamais y mettre la Private Key).
 
-1. **Activation (une seule fois)** : envoyer un premier message de test depuis le site en ligne. FormSubmit envoie alors un email d'activation à stratos001ai@gmail.com : cliquer sur « Activate Form ». Les messages suivants arrivent directement.
-2. **Optionnel** : l'email d'activation propose aussi une adresse aléatoire qui masque l'email dans le code du site. Elle peut remplacer l'email dans le réglage `formulaire` de `assets/js/site.js` (`https://formsubmit.co/ajax/<chaîne aléatoire>`).
+Le modèle EmailJS utilise les variables `{{nom}}`, `{{email}}`, `{{entreprise}}`, `{{besoin}}` et `{{message}}`. Mettre `{{email}}` en « Reply To » pour répondre directement au visiteur.
 
-Le formulaire contient un champ piège (`_honey`) contre les robots. Pour changer de service (Formspree…), il suffit de modifier le réglage `formulaire`.
+Sécurité : dans EmailJS, **Account → Security**, limiter l'envoi au domaine du site (`equationstratos.github.io`).
+
+Le formulaire contient un champ piège (`_honey`) contre les robots. Si `emailjs` est vidé, le réglage `formulaire` (Formspree, FormSubmit…) est utilisé à la place.
 
 ## À compléter avant de partager le lien
 
