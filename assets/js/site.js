@@ -55,6 +55,39 @@ const REGLAGES = {
 
   document.querySelectorAll("[data-annee]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
+  // ── Exemples par métier : onglets (flèches, Début et Fin au clavier) ──
+  document.querySelectorAll("[data-onglets]").forEach((zone) => {
+    const liste = zone.querySelector('[role="tablist"]');
+    const onglets = [...zone.querySelectorAll('[role="tab"]')];
+    const panneaux = onglets.map((o) => document.getElementById(o.getAttribute("aria-controls")));
+    const choisir = (index, focus) => {
+      onglets.forEach((onglet, i) => {
+        const actif = i === index;
+        onglet.setAttribute("aria-selected", String(actif));
+        onglet.tabIndex = actif ? 0 : -1;
+        panneaux[i].hidden = !actif;
+      });
+      if (focus) onglets[index].focus({ preventScroll: true });
+      // Sur mobile, la barre d'onglets défile : on y amène l'onglet choisi, sans faire bouger la page.
+      const o = onglets[index].getBoundingClientRect();
+      const l = liste.getBoundingClientRect();
+      if (o.left < l.left) liste.scrollLeft -= l.left - o.left + 8;
+      else if (o.right > l.right) liste.scrollLeft += o.right - l.right + 8;
+    };
+    onglets.forEach((onglet, i) => {
+      onglet.addEventListener("click", () => choisir(i, false));
+      onglet.addEventListener("keydown", (e) => {
+        const n = onglets.length;
+        const cible = { ArrowRight: (i + 1) % n, ArrowLeft: (i - 1 + n) % n, Home: 0, End: n - 1 }[e.key];
+        if (cible === undefined) return;
+        e.preventDefault();
+        choisir(cible, true);
+      });
+    });
+    zone.classList.add("onglets--actifs");
+    choisir(0, false);
+  });
+
   // ── Formulaire de contact ──
   const form = document.getElementById("formulaire");
   if (!form) return;

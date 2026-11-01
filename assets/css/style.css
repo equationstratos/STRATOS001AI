@@ -136,12 +136,11 @@ p { margin: 0 0 1rem; }
 }
 .console__titre { display: flex; align-items: center; gap: 10px; font: 700 0.95rem/1 var(--titres); margin-bottom: 18px; }
 .console__point { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
-.console__etiquette { margin-left: auto; font: 700 0.68rem/1 var(--texte-police); letter-spacing: 0.14em; text-transform: uppercase; color: var(--texte-2); border: 1px solid var(--bord-fort); padding: 5px 8px; border-radius: 99px; }
+.console__etiquette { margin-left: auto; white-space: nowrap; font: 700 0.68rem/1 var(--texte-police); letter-spacing: 0.14em; text-transform: uppercase; color: var(--texte-2); border: 1px solid var(--bord-fort); padding: 5px 8px; border-radius: 99px; }
 .console__etapes { list-style: none; margin: 0; padding: 0; position: relative; }
 .console__etapes::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 26px; width: 1px; background: linear-gradient(180deg, var(--bord-fort), var(--bleu-clair)); }
 .console__etapes li { position: relative; display: grid; grid-template-columns: auto 1fr; column-gap: 12px; padding: 0 0 18px 24px; }
-.console__etapes li::before { content: ""; position: absolute; left: 0; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--fond); border: 1px solid var(--bord-fort); }
-.console__etapes li.console__fait::before { background: var(--bleu); border-color: var(--bleu-clair); box-shadow: 0 0 12px rgba(10, 108, 255, 0.9); }
+.console__etapes li::before { content: ""; position: absolute; left: 0; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--bleu); border: 1px solid var(--bleu-clair); box-shadow: 0 0 10px rgba(10, 108, 255, 0.8); }
 .console__heure { font: 400 0.8rem/1.6 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; color: var(--texte-2); }
 .console__libelle { font-weight: 700; font-size: 0.98rem; }
 .console__detail { grid-column: 2; color: var(--texte-2); font-size: 0.9rem; line-height: 1.5; }
@@ -149,33 +148,59 @@ p { margin: 0 0 1rem; }
 .console__pied { margin: 2px 0 0; padding-top: 14px; border-top: 1px solid var(--bord); color: var(--texte-2); font-size: 0.92rem; }
 .console__pied strong { color: var(--texte); }
 
-/* ───────────────────────── Bénéfices ───────────────────────── */
-.benefices { border-block: 1px solid var(--bord); background: var(--fond-2); padding: 40px 0; }
-.benefices__liste { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
-.benefices__liste h3 { font-size: 1.08rem; margin-bottom: 0.5rem; }
-.benefices__liste h3::before { content: ""; display: block; width: 28px; height: 2px; margin-bottom: 14px; background: linear-gradient(90deg, var(--bleu), var(--cyan)); }
-.benefices__liste p { color: var(--texte-2); margin: 0; font-size: 0.98rem; }
-
 /* ───────────────────────── Sections ───────────────────────── */
 .section { padding: clamp(64px, 9vw, 112px) 0; }
 .section--sombre { background: var(--fond-2); border-block: 1px solid var(--bord); }
 
-/* Services */
-.cartes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 2.25rem; }
-.carte {
-  position: relative; display: flex; flex-direction: column;
-  padding: 30px 26px 24px; background: var(--carte);
+/* Services : ce qui peut être automatisé */
+.capacites { list-style: none; padding: 0; margin: 2.25rem 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.capacite {
+  padding: 26px 24px; background: var(--carte);
   border: 1px solid var(--bord); border-radius: 10px;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
-.carte:hover { border-color: var(--bord-fort); transform: translateY(-2px); }
-.carte--mise-en-avant { border-color: rgba(58, 157, 255, 0.45); box-shadow: var(--halo); }
-.carte h3 { margin-bottom: 0.75rem; }
-.carte__accroche { color: var(--texte-2); }
-.carte__liste { list-style: none; padding: 0; margin: 0.25rem 0 1.5rem; display: grid; gap: 10px; }
-.carte__liste li { position: relative; padding-left: 22px; font-size: 0.97rem; }
-.carte__liste li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 9px; height: 5px; border-left: 2px solid var(--cyan); border-bottom: 2px solid var(--cyan); transform: rotate(-45deg); }
-.carte__pied { margin: auto 0 0; padding-top: 16px; border-top: 1px solid var(--bord); font: 700 0.9rem/1.3 var(--titres); color: var(--bleu-clair); }
+.capacite:hover { border-color: var(--bord-fort); transform: translateY(-2px); }
+.capacite__icone {
+  display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 18px;
+  color: var(--cyan); background: rgba(10, 108, 255, 0.12);
+  border: 1px solid rgba(58, 157, 255, 0.3); border-radius: 10px;
+}
+.capacite__icone svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.capacite h3 { margin-bottom: 0.5rem; }
+.capacite p { margin: 0; color: var(--texte-2); font-size: 0.98rem; }
+.sur-mesure {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px;
+  margin-top: 22px; padding: 24px 26px; border-radius: 10px;
+  border: 1px solid rgba(58, 157, 255, 0.45); box-shadow: var(--halo);
+  background: linear-gradient(120deg, rgba(10, 108, 255, 0.13), rgba(10, 108, 255, 0.02));
+}
+.sur-mesure p { flex: 1 1 420px; margin: 0; color: var(--texte-2); }
+.sur-mesure strong { color: var(--texte); }
+
+/* Exemples par métier : onglets (sans JavaScript, tous les métiers s'affichent les uns sous les autres) */
+.metiers__intro { color: var(--texte-2); margin: -0.5rem 0 0; }
+.metiers__onglets { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.75rem 0 1.5rem; padding: 2px 2px 8px; }
+.onglets:not(.onglets--actifs) .metiers__onglets { display: none; }
+.metiers__onglet {
+  flex: none; padding: 11px 16px; cursor: pointer; white-space: nowrap;
+  font: 700 0.92rem/1 var(--titres); color: var(--texte-2);
+  background: transparent; border: 1px solid var(--bord-fort); border-radius: 99px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.metiers__onglet:hover { color: var(--texte); border-color: var(--bleu-clair); }
+.metiers__onglet[aria-selected="true"] { color: #fff; border-color: transparent; background: linear-gradient(180deg, var(--bleu-clair), var(--bleu)); box-shadow: 0 8px 24px -10px rgba(10, 108, 255, 0.9); }
+.metier { margin-top: 2.25rem; }
+.onglets--actifs .metier { margin-top: 0; }
+.metier__titre { font-size: 1.25rem; margin-bottom: 1rem; }
+.onglets--actifs .metier__titre { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.metier__exemples { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.metier__exemples li { padding: 20px 22px; background: var(--carte); border: 1px solid var(--bord); border-left: 3px solid var(--bleu); border-radius: 8px; }
+.metier__exemples h4 { margin: 0 0 0.4rem; font: 700 1.05rem/1.25 var(--titres); letter-spacing: -0.01em; }
+.metier__exemples p { margin: 0; color: var(--texte-2); font-size: 0.97rem; }
+.metier__note { margin: 14px 0 0; color: var(--texte-2); font-size: 0.92rem; }
+.metier__note::before { content: "ⓘ "; color: var(--cyan); }
+.metiers__fin { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 2.25rem; padding-top: 2rem; border-top: 1px solid var(--bord); }
+.metiers__fin p { flex: 1 1 380px; margin: 0; color: var(--texte-2); }
 
 /* Méthode */
 .etapes { list-style: none; padding: 0; margin: 2.25rem 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
@@ -256,9 +281,14 @@ p { margin: 0 0 1rem; }
 @media (max-width: 960px) {
   .hero__grille, .contact { grid-template-columns: minmax(0, 1fr); }
   .console { max-width: 560px; }
-  .cartes, .etapes, .benefices__liste { grid-template-columns: minmax(0, 1fr); }
+  .etapes { grid-template-columns: minmax(0, 1fr); }
+  .capacites { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .entete__nav { display: none; }
   .entete .bouton { margin-left: auto; }
+}
+@media (max-width: 720px) {
+  .capacites, .metier__exemples { grid-template-columns: minmax(0, 1fr); }
+  .metiers__onglets { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; }
 }
 @media (max-width: 560px) {
   body { font-size: 1rem; }
