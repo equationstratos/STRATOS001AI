@@ -50,7 +50,7 @@ Penser à mettre à jour les chiffres en haut de page (`pf-chiffres`), le titre 
 
 ## Page Tous les projets
 
-`projets.html` recense tous les projets (33), classés en 6 domaines avec des filtres. Sans JavaScript, tous les domaines s'affichent.
+`projets.html` recense tous les projets (32), classés en 6 domaines avec des filtres. Sans JavaScript, tous les domaines s'affichent.
 
 **Ajouter un projet** : copier un bloc `<article class="pj-carte"> … </article>` dans le bon domaine, puis changer :
 - l'image : `assets/img/projets/nom.jpg`, au format 800 × 500 (ou garder une icône avec `pj-carte__visuel--icone`) ;
