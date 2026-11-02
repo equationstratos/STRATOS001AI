@@ -6,7 +6,7 @@ Site statique (HTML, CSS, JavaScript), sans dépendance ni outil de construction
 
 1. Dans le dépôt : **Settings → Pages**.
 2. **Source** : *Deploy from a branch*. **Branch** : `main`, dossier `/ (root)`. Enregistrer.
-3. Après une à deux minutes, le site est en ligne. L'adresse exacte est affichée en haut de la page **Settings → Pages** (en principe `https://equationstratos.github.io/stratos001ai/`).
+3. Après une à deux minutes, le site est en ligne. L'adresse exacte est affichée en haut de la page **Settings → Pages** (ici `https://equationstratos.github.io/STRATOS001AI/`).
 
 Avec un compte GitHub gratuit, GitHub Pages ne fonctionne que si le dépôt est public.
 
