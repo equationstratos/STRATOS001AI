@@ -464,7 +464,7 @@ p { margin: 0 0 1rem; }
 .medaille--ibm .medaille__sigle, .medaille--microsoft .medaille__sigle, .medaille--github .medaille__sigle { font-size: 0.8rem; }
 
 /* Cartes des badges obtenus */
-.cert-grille { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.cert-grille { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .cert {
   display: flex; flex-direction: column; gap: 16px; padding: 22px 20px 18px; background: var(--carte);
   border: 1px solid var(--bord); border-top: 2px solid var(--c, var(--bleu)); border-radius: 12px;
