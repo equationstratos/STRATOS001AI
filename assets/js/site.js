@@ -20,6 +20,8 @@ const REGLAGES = {
   // Profils
   linkedin: "",
   x: "https://x.com/stratos001ai",
+  // Profil public Google Skills (page Certifications), ex. "https://www.skills.google/public_profiles/…"
+  profilGoogleSkills: "",
 };
 
 (function () {

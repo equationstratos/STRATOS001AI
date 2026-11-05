@@ -61,12 +61,21 @@ Mettre ensuite à jour le nombre de projets du domaine (`pj-domaine__nombre`), l
 
 Les visuels des projets sont des captures des visualiseurs 3D et des rendus présents dans les dépôts.
 
+## Page Certifications
+
+`certifications.html` affiche les badges obtenus, avec leur lien de vérification, et un tableau du parcours : obtenus et prévus.
+
+- **Ajouter un badge obtenu** : copier un bloc `<article class="cert"> … </article>`, choisir l'organisme (`cert--anthropic`, `cert--google`, `cert--github`, `cert--microsoft`, `cert--ibm`, `cert--helsinki`) et la médaille correspondante (`medaille--…`), puis changer le titre, la date et le lien « Vérifier ». Ensuite, passer la ligne du tableau de `statut--prevu` à `statut--obtenu` et mettre à jour les chiffres du haut.
+- **Lien de vérification Claude Academy** : sur academy.claude.com, *Your learning*, ouvrir le badge et copier son lien public (`https://academy.claude.com/verify/…`).
+- **Profil Google Skills** : renseigner `profilGoogleSkills` dans `assets/js/site.js` avec l'adresse du profil public. Le lien « Voir le profil » apparaît alors sous chaque badge Google.
+
 ## Structure
 
 ```
 index.html               Page d'accueil
 realisations.html        Réalisations (portfolio détaillé)
 projets.html             Tous les projets
+certifications.html      Certifications et parcours de formation
 mentions-legales.html    Mentions légales et confidentialité
 assets/css/style.css     Styles (couleurs relevées sur le logo, en haut du fichier)
 assets/js/site.js        Réglages et envoi du formulaire
