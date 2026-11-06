@@ -571,7 +571,7 @@ html:has(.fiche[open]) { overflow: hidden; }
   .fiche__infos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .fiche[open] .fiche__cadre, .fiche[open]::backdrop { animation: none; }
+  .fiche[open] .fiche__cadre, .fiche[open]::backdrop, .statut--encours::before { animation: none; }
 }
 
 /* Tableau du parcours (devient une liste de fiches sur mobile) */
@@ -588,6 +588,7 @@ html:has(.fiche[open]) { overflow: hidden; }
 .tableau-cert .medaille--ibm .medaille__sigle, .tableau-cert .medaille--microsoft .medaille__sigle, .tableau-cert .medaille--github .medaille__sigle, .tableau-cert .medaille--n8n .medaille__sigle { font-size: 0.56rem; }
 .tableau-cert .medaille__etat { width: 15px; height: 15px; font-size: 0.5rem; right: -3px; bottom: -3px; border-width: 1.5px; }
 .tableau-cert .ligne--prevu .medaille { filter: saturate(0.35) brightness(0.8); }
+.tableau-cert .ligne--encours .medaille { filter: saturate(0.7); }
 .tableau__org { display: flex; align-items: center; gap: 12px; color: var(--texte); white-space: nowrap; }
 .tableau__org small { display: block; color: var(--texte-2); font-size: 0.78rem; }
 .statut { display: inline-flex; align-items: center; gap: 7px; padding: 3px 10px; border-radius: 99px; font-size: 0.8rem; font-weight: 700; white-space: nowrap; }
@@ -596,6 +597,9 @@ html:has(.fiche[open]) { overflow: hidden; }
 .statut--obtenu::before { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
 .statut--prevu { color: var(--texte-2); border: 1px dashed var(--bord-fort); }
 .statut--prevu::before { background: var(--texte-2); opacity: 0.6; }
+.statut--encours { color: #ffc86b; background: rgba(255, 184, 77, 0.07); border: 1px solid rgba(255, 184, 77, 0.4); }
+.statut--encours::before { background: #ffb84d; box-shadow: 0 0 8px rgba(255, 184, 77, 0.8); animation: statut-pulse 2s ease-in-out infinite; }
+@keyframes statut-pulse { 50% { opacity: 0.35; } }
 .tableau-cert td a { margin-left: 8px; font-size: 0.82rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
 
 /* Appel final */
