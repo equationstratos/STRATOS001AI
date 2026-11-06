@@ -66,6 +66,7 @@ Les visuels des projets sont des captures des visualiseurs 3D et des rendus pré
 `certifications.html` affiche les badges obtenus, avec leur lien de vérification, et un tableau du parcours : obtenus et prévus.
 
 - **Ajouter un badge obtenu** : copier un bloc `<article class="cert"> … </article>`, choisir l'organisme (`cert--anthropic`, `cert--google`, `cert--github`, `cert--microsoft`, `cert--ibm`, `cert--helsinki`) et la médaille correspondante (`medaille--…`), puis changer le titre, la date et le lien « Vérifier ». Ensuite, passer la ligne du tableau de `statut--prevu` à `statut--obtenu` et mettre à jour les chiffres du haut.
+- **Visuel officiel du badge** : déposer l'image dans `assets/img/badges/` (900 px de large suffisent) et l'indiquer dans le bloc `<div class="cert__visuel …"><img src="…"></div>` de la carte. Pour Claude Academy, l'image se trouve dans le PDF du badge (*Download PDF* sur *Your learning*) ; pour Google Skills, sur la page du badge.
 - **Lien de vérification Claude Academy** : sur academy.claude.com, *Your learning*, ouvrir le badge et copier son lien public (`https://academy.claude.com/verify/…`).
 - **Profil Google Skills** : renseigner `profilGoogleSkills` dans `assets/js/site.js` avec l'adresse du profil public. Le lien « Voir le profil » apparaît alors sous chaque badge Google.
 
