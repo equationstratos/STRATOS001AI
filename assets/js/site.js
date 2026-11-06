@@ -115,6 +115,146 @@ const REGLAGES = {
     zone.hidden = false;
   });
 
+  // ── Page Certifications : fiche détaillée de chaque badge (clic sur la carte) ──
+  const fiche = document.getElementById("fiche");
+  const cartesBadges = [...document.querySelectorAll(".cert")].filter((c) => c.querySelector(".cert__fiche"));
+  if (fiche && cartesBadges.length && typeof fiche.showModal === "function") {
+    const contenu = fiche.querySelector("[data-fiche-contenu]");
+    const position = fiche.querySelector("[data-fiche-position]");
+    const annonce = fiche.querySelector("[data-fiche-annonce]");
+    let courant = 0;
+
+    const el = (balise, classe, texte) => {
+      const e = document.createElement(balise);
+      if (classe) e.className = classe;
+      if (texte) e.textContent = texte;
+      return e;
+    };
+    const texteDe = (carte, selecteur) => {
+      const e = carte.querySelector(selecteur);
+      return e ? e.textContent.trim() : "";
+    };
+
+    const remplir = (index) => {
+      courant = (index + cartesBadges.length) % cartesBadges.length;
+      const carte = cartesBadges[courant];
+      const source = carte.querySelector(".cert__fiche");
+      const { niveau, duree } = source.dataset;
+      const org = texteDe(carte, ".cert__org");
+      const [organisme, plateforme] = org.split(" · ");
+      const titre = texteDe(carte, "h3");
+      const type = texteDe(carte, ".cert__type");
+      const obtenu = texteDe(carte, "time");
+      const lien = carte.querySelector(".cert__lien");
+      const verifiable = lien && !lien.hidden && lien.getAttribute("href") !== "#";
+
+      fiche.style.setProperty("--c", getComputedStyle(carte).getPropertyValue("--c"));
+
+      // En-tête : visuel officiel, organisme, titre, résumé, étiquettes
+      const visuel = carte.querySelector(".cert__visuel").cloneNode(true);
+      visuel.classList.add("fiche__visuel");
+      visuel.querySelector("img").loading = "eager";
+      const bloc = el("div", "fiche__titre");
+      const h2 = el("h2", "", titre);
+      h2.id = "fiche-titre";
+      const puces = el("ul", "fiche__puces");
+      [type, niveau, obtenu, duree && `Durée : ${duree}`].filter(Boolean).forEach((t) => puces.append(el("li", "", t)));
+      bloc.append(el("p", "cert__org", org), h2, el("p", "fiche__resume", texteDe(carte, ".cert__preuve")), puces);
+      const entete = el("div", "fiche__entete");
+      entete.append(visuel, bloc);
+
+      // Compétences acquises et intérêt pour le client
+      const competences = el("section", "fiche__bloc");
+      competences.append(el("h3", "", "Compétences acquises"), source.querySelector(".fiche__competences").cloneNode(true));
+      const pourVous = el("section", "fiche__bloc fiche__bloc--vous");
+      pourVous.append(el("h3", "", "Ce que ça vous apporte"), el("p", "", texteDe(source, ".fiche__pour-vous")));
+
+      // Informations
+      const infos = el("dl", "fiche__infos");
+      const info = (terme, valeur) => {
+        if (!valeur) return;
+        const ligne = el("div");
+        const dd = el("dd");
+        dd.append(valeur);
+        ligne.append(el("dt", "", terme), dd);
+        infos.append(ligne);
+      };
+      info("Organisme", organisme);
+      info("Plateforme", plateforme);
+      info("Type", type);
+      info("Niveau", niveau);
+      info("Durée", duree);
+      info("Obtenu", obtenu.replace(/^Obtenu (le|en) /, ""));
+      info("Coût", "Gratuit");
+      if (verifiable) {
+        const a = el("a", "", "Vérifier en ligne →");
+        a.href = lien.href;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.setAttribute("aria-label", `Vérifier le certificat ${titre} (nouvel onglet)`);
+        info("Vérification", a);
+      } else if (/google/i.test(organisme)) {
+        info("Vérification", "Profil Google Skills");
+      }
+
+      contenu.replaceChildren(entete, competences, pourVous, infos);
+      contenu.scrollTop = 0;
+      position.textContent = `${courant + 1} / ${cartesBadges.length}`;
+      position.setAttribute("aria-label", `Badge ${courant + 1} sur ${cartesBadges.length}`);
+      if (carte.id) history.replaceState(null, "", `#${carte.id}`);
+      return titre;
+    };
+
+    const ouvrir = (index) => {
+      annonce.textContent = "";
+      remplir(index);
+      if (!fiche.open) fiche.showModal();
+      fiche.querySelector("[data-fiche-fermer]").focus();
+    };
+
+    fiche.addEventListener("close", () => {
+      history.replaceState(null, "", location.pathname + location.search);
+      const bouton = cartesBadges[courant].querySelector(".cert__ouvrir");
+      if (bouton) bouton.focus();
+    });
+    fiche.querySelector("[data-fiche-fermer]").addEventListener("click", () => fiche.close());
+    // Clic sur le fond sombre autour de la fiche : fermer
+    fiche.addEventListener("click", (e) => {
+      if (e.target === fiche) fiche.close();
+    });
+    const suivre = (pas) => {
+      const titre = remplir(courant + pas);
+      annonce.textContent = `${titre}, badge ${courant + 1} sur ${cartesBadges.length}`;
+    };
+    fiche.querySelectorAll("[data-fiche-pas]").forEach((b) => b.addEventListener("click", () => suivre(Number(b.dataset.fichePas))));
+    fiche.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") suivre(1);
+      else if (e.key === "ArrowLeft") suivre(-1);
+    });
+
+    cartesBadges.forEach((carte, i) => {
+      const bouton = carte.querySelector(".cert__ouvrir");
+      if (bouton) {
+        bouton.hidden = false;
+        bouton.addEventListener("click", () => ouvrir(i));
+      }
+      carte.classList.add("cert--cliquable");
+      // Toute la carte ouvre la fiche, sauf ses liens et boutons (et une sélection de texte)
+      carte.addEventListener("click", (e) => {
+        if (e.target.closest("a, button") || String(window.getSelection())) return;
+        ouvrir(i);
+      });
+    });
+
+    // Lien direct vers une fiche : certifications.html#badge-claude-code-101
+    const ouvrirDepuisAdresse = () => {
+      const cible = cartesBadges.findIndex((c) => c.id && `#${c.id}` === location.hash);
+      if (cible >= 0) ouvrir(cible);
+    };
+    window.addEventListener("hashchange", ouvrirDepuisAdresse);
+    ouvrirDepuisAdresse();
+  }
+
   // ── Formulaire de contact ──
   const form = document.getElementById("formulaire");
   if (!form) return;

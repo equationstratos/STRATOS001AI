@@ -57,7 +57,8 @@
     <!-- ───────── Badges obtenus ─────────
          Pour ajouter un badge obtenu : copier un bloc <article class="cert"> … </article>, changer
          l'organisme (classe cert--anthropic, cert--google, cert--github, cert--microsoft, cert--ibm ou cert--helsinki),
-         le titre, la date et le lien de vérification. Puis passer sa ligne du tableau en « Obtenu ». -->
+         le titre, la date et le lien de vérification, puis la fiche (bloc cert__fiche : compétences acquises,
+         « Ce que ça vous apporte », data-niveau et data-duree). Puis passer sa ligne du tableau en « Obtenu ». -->
     <section class="section pj-projets" aria-labelledby="obtenus-titre">
       <div class="conteneur">
         <div class="pj-domaine__entete">
@@ -65,154 +66,356 @@
           <p><strong>Pour vous :</strong> des compétences validées par Anthropic, Google Cloud et n8n, sur les agents IA et l'automatisation que je mets en place chez mes clients.</p>
         </div>
         <div class="cert-grille">
-          <article class="cert cert--anthropic">
+          <article id="badge-claude-platform-101" class="cert cert--anthropic">
             <div class="cert__visuel cert__visuel--anthropic"><img src="assets/img/badges/anthropic-claude-platform-101.webp" alt="Badge officiel Claude Platform 101" width="900" height="612" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Anthropic · Claude Academy</p>
               <h3>Claude Platform 101</h3>
               <p class="cert__preuve">Construire des applications sur l&#x27;API Claude.</p>
               <p class="cert__pied"><span class="cert__type">Certificat de réussite</span><time datetime="2026-11-03">Obtenu le 3 nov. 2026</time></p>
-              <a class="cert__lien" href="https://academy.claude.com/verify/bbc5bdb0b64206d510ea5e867e1ffb9f" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat Claude Platform 101 (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, Claude Platform 101</span></button>
+                <a class="cert__lien" href="https://academy.claude.com/verify/bbc5bdb0b64206d510ea5e867e1ffb9f" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat Claude Platform 101 (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Débutant">
+                <ul class="fiche__competences">
+                  <li>Envoyer des requêtes à l&#x27;API Claude et exploiter ses réponses structurées</li>
+                  <li>Choisir le bon modèle pour chaque tâche selon la qualité, le coût et la rapidité</li>
+                  <li>Construire la boucle d&#x27;un agent IA, puis la simplifier avec le SDK</li>
+                  <li>Donner des outils à Claude et activer son raisonnement approfondi</li>
+                  <li>Étendre un agent avec la recherche web, l&#x27;exécution de code, les Skills et les serveurs MCP</li>
+                  <li>Garder un agent fiable et économique sur la durée grâce à la gestion du contexte</li>
+                  <li>Déployer un agent géré par Anthropic de bout en bout</li>
+                </ul>
+                <p class="fiche__pour-vous">Des assistants et des automatisations construits directement sur l&#x27;API Claude, adaptés à vos outils et à votre budget.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--anthropic">
+          <article id="badge-claude-code-101" class="cert cert--anthropic">
             <div class="cert__visuel cert__visuel--anthropic"><img src="assets/img/badges/anthropic-claude-code-101.webp" alt="Badge officiel Claude Code 101" width="900" height="612" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Anthropic · Claude Academy</p>
               <h3>Claude Code 101</h3>
               <p class="cert__preuve">Développer et automatiser avec Claude Code, l&#x27;agent de programmation d&#x27;Anthropic.</p>
               <p class="cert__pied"><span class="cert__type">Certificat de réussite</span><time datetime="2026-11-05">Obtenu le 5 nov. 2026</time></p>
-              <a class="cert__lien" href="https://academy.claude.com/verify/933a6b374875d147b61496bbb0b3228a" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat Claude Code 101 (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, Claude Code 101</span></button>
+                <a class="cert__lien" href="https://academy.claude.com/verify/933a6b374875d147b61496bbb0b3228a" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat Claude Code 101 (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Débutant">
+                <ul class="fiche__competences">
+                  <li>Comprendre le fonctionnement d&#x27;un agent de programmation : boucle agentique, contexte, outils, permissions</li>
+                  <li>Utiliser Claude Code dans le terminal, VS Code, JetBrains, l&#x27;application de bureau ou le web</li>
+                  <li>Appliquer la méthode Explorer → Planifier → Coder → Valider</li>
+                  <li>Garder les longues sessions efficaces en gérant le contexte</li>
+                  <li>Donner une mémoire de projet à Claude avec un fichier CLAUDE.md</li>
+                  <li>Créer des sous-agents et connecter des outils externes avec MCP</li>
+                  <li>Écrire des hooks pour imposer des règles : mise en forme, commandes bloquées, notifications</li>
+                </ul>
+                <p class="fiche__pour-vous">Vos outils et vos sites développés plus vite, avec une méthode rigoureuse et du code relu.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--anthropic">
+          <article id="badge-claude-101" class="cert cert--anthropic">
             <div class="cert__visuel cert__visuel--anthropic"><img src="assets/img/badges/anthropic-claude-101.webp" alt="Badge officiel Claude 101" width="900" height="612" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Anthropic · Claude Academy</p>
               <h3>Claude 101</h3>
               <p class="cert__preuve">Utiliser Claude au quotidien : prompts efficaces, projets, artefacts.</p>
               <p class="cert__pied"><span class="cert__type">Certificat de réussite</span><time datetime="2026-11-05">Obtenu le 5 nov. 2026</time></p>
-              <a class="cert__lien" href="https://academy.claude.com/verify/7dc0879f5479088175a34099cf036cfe" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat Claude 101 (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, Claude 101</span></button>
+                <a class="cert__lien" href="https://academy.claude.com/verify/7dc0879f5479088175a34099cf036cfe" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat Claude 101 (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Débutant">
+                <ul class="fiche__competences">
+                  <li>Utiliser Claude efficacement dès la première conversation</li>
+                  <li>Rédiger des demandes claires et les affiner quand le résultat ne convient pas</li>
+                  <li>Choisir le bon mode de travail : échanger, déléguer une tâche ou créer un logiciel</li>
+                  <li>Organiser le travail avec les Projets et les Skills, créer documents et visuels</li>
+                  <li>Connecter Claude à vos outils, à vos documents et au web</li>
+                  <li>Appliquer Claude aux tâches courantes de chaque métier</li>
+                </ul>
+                <p class="fiche__pour-vous">Je peux vous former, vous et votre équipe, à utiliser Claude au quotidien.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--anthropic">
+          <article id="badge-ai-fluency-for-builders" class="cert cert--anthropic">
             <div class="cert__visuel cert__visuel--anthropic"><img src="assets/img/badges/anthropic-ai-fluency-builders.webp" alt="Badge officiel AI Fluency for builders" width="900" height="612" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Anthropic · Claude Academy</p>
               <h3>AI Fluency for builders</h3>
               <p class="cert__preuve">Travailler avec l&#x27;IA de façon efficace, éthique et sûre.</p>
               <p class="cert__pied"><span class="cert__type">Certificat de réussite</span><time datetime="2026-11-05">Obtenu le 5 nov. 2026</time></p>
-              <a class="cert__lien" href="https://academy.claude.com/verify/5cc702f96d031f7ed6cd6b76c79a44e6" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat AI Fluency for builders (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, AI Fluency for builders</span></button>
+                <a class="cert__lien" href="https://academy.claude.com/verify/5cc702f96d031f7ed6cd6b76c79a44e6" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat AI Fluency for builders (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Débutant">
+                <ul class="fiche__competences">
+                  <li>Appliquer le cadre des 4D (Délégation, Description, Discernement, Diligence) à la conception de solutions</li>
+                  <li>Savoir ce que l&#x27;IA fait bien et où elle se trompe</li>
+                  <li>Découper un problème client et décider du rôle de l&#x27;IA à chaque étape</li>
+                  <li>Définir le résultat attendu avec des tests d&#x27;acceptation, avant de coder</li>
+                  <li>Traduire un besoin en instructions précises pour l&#x27;IA</li>
+                  <li>Évaluer le travail de l&#x27;IA : exactitude, qualité, adéquation, expérience, responsabilité</li>
+                  <li>Assumer ce qui est livré : livrer, corriger ou arrêter</li>
+                </ul>
+                <p class="fiche__pour-vous">Des solutions testées et assumées, livrées seulement quand elles répondent vraiment à votre besoin.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--anthropic">
+          <article id="badge-ai-fluency-for-small-businesses" class="cert cert--anthropic">
             <div class="cert__visuel cert__visuel--anthropic"><img src="assets/img/badges/anthropic-ai-fluency-small-businesses.webp" alt="Badge officiel AI Fluency for small businesses" width="900" height="612" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Anthropic · Claude Academy</p>
               <h3>AI Fluency for small businesses</h3>
               <p class="cert__preuve">Appliquer l&#x27;IA au quotidien d&#x27;une petite entreprise, de façon sûre et efficace.</p>
               <p class="cert__pied"><span class="cert__type">Certificat de réussite</span><time datetime="2026-11-05">Obtenu le 5 nov. 2026</time></p>
-              <a class="cert__lien" href="https://academy.claude.com/verify/aeb2bee5e4b0728e2a94588a58c51ad7" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat AI Fluency for small businesses (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, AI Fluency for small businesses</span></button>
+                <a class="cert__lien" href="https://academy.claude.com/verify/aeb2bee5e4b0728e2a94588a58c51ad7" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat AI Fluency for small businesses (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Débutant">
+                <ul class="fiche__competences">
+                  <li>Appliquer le cadre des 4D aux tâches d&#x27;une petite entreprise</li>
+                  <li>Connaître les limites de l&#x27;IA : erreurs, informations inventées, connaissances datées</li>
+                  <li>Rédiger des demandes efficaces et vérifier les recherches de l&#x27;IA avant d&#x27;agir</li>
+                  <li>Protéger les données sensibles de l&#x27;entreprise et de ses clients</li>
+                  <li>Choisir les tâches répétitives à automatiser et celles à garder humaines</li>
+                  <li>Construire une façon de travailler avec l&#x27;IA, reproductible</li>
+                  <li>Rédiger une charte d&#x27;utilisation de l&#x27;IA pour l&#x27;entreprise</li>
+                </ul>
+                <p class="fiche__pour-vous">Je sais repérer ce qui mérite d&#x27;être automatisé chez vous, dans le respect de vos données et de vos valeurs.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--anthropic">
+          <article id="badge-claude-code-in-action" class="cert cert--anthropic">
             <div class="cert__visuel cert__visuel--anthropic"><img src="assets/img/badges/anthropic-claude-code-in-action.webp" alt="Badge officiel Claude Code in action" width="900" height="612" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Anthropic · Claude Academy</p>
               <h3>Claude Code in action</h3>
               <p class="cert__preuve">Mener de longues sessions Claude Code fiables : piloter, configurer, automatiser, vérifier.</p>
               <p class="cert__pied"><span class="cert__type">Certificat de réussite</span><time datetime="2026-11-06">Obtenu le 6 nov. 2026</time></p>
-              <a class="cert__lien" href="https://academy.claude.com/verify/5aafd5060f860c834a0f8266b08effbd" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat Claude Code in action (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, Claude Code in action</span></button>
+                <a class="cert__lien" href="https://academy.claude.com/verify/5aafd5060f860c834a0f8266b08effbd" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat Claude Code in action (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Intermédiaire">
+                <ul class="fiche__competences">
+                  <li>Piloter de longues sessions : mode plan, résumés maîtrisés, retour en arrière</li>
+                  <li>Configurer Claude : CLAUDE.md efficace, skills, modes de permission adaptés</li>
+                  <li>Faire respecter les règles impératives avec des hooks</li>
+                  <li>Automatiser : tâches planifiées dans le cloud, exécution sans interface, revue de code sur GitHub</li>
+                  <li>Vérifier les exécutions autonomes et conditionner chaque étape aux résultats des tests</li>
+                  <li>Partager une configuration fiable sous forme de plugin pour toute une équipe</li>
+                </ul>
+                <p class="fiche__pour-vous">Des automatisations qui tournent seules, de façon fiable et vérifiée.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--anthropic">
+          <article id="badge-ai-fluency-framework-and-foundations" class="cert cert--anthropic">
             <div class="cert__visuel cert__visuel--anthropic"><img src="assets/img/badges/anthropic-ai-fluency-framework.webp" alt="Badge officiel AI Fluency: Framework and foundations" width="900" height="612" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Anthropic · Claude Academy</p>
               <h3>AI Fluency: Framework and foundations</h3>
               <p class="cert__preuve">Collaborer avec l&#x27;IA de façon efficace, éthique et sûre : le cadre des 4D.</p>
               <p class="cert__pied"><span class="cert__type">Certificat de réussite</span><time datetime="2026-11-06">Obtenu le 6 nov. 2026</time></p>
-              <a class="cert__lien" href="https://academy.claude.com/verify/89cd43d6d70e3b5b51701b35e6f748a9" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat AI Fluency: Framework and foundations (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, AI Fluency: Framework and foundations</span></button>
+                <a class="cert__lien" href="https://academy.claude.com/verify/89cd43d6d70e3b5b51701b35e6f748a9" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat AI Fluency: Framework and foundations (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Débutant">
+                <ul class="fiche__competences">
+                  <li>Comprendre ce qu&#x27;est la maîtrise de l&#x27;IA et pourquoi elle compte</li>
+                  <li>Appliquer le cadre des 4D : Délégation, Description, Discernement, Diligence</li>
+                  <li>Distinguer automatisation, augmentation et agents autonomes</li>
+                  <li>Comprendre le fonctionnement de l&#x27;IA générative, ses capacités et ses limites</li>
+                  <li>Communiquer clairement avec l&#x27;IA grâce aux techniques de base des prompts</li>
+                  <li>Évaluer les résultats avec esprit critique et les améliorer</li>
+                  <li>Assumer la responsabilité du travail réalisé avec l&#x27;IA, en toute transparence</li>
+                </ul>
+                <p class="fiche__pour-vous">Une utilisation de l&#x27;IA efficace, éthique et sûre, à chaque étape de vos projets.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--anthropic">
+          <article id="badge-ai-fluency-for-creative-work" class="cert cert--anthropic">
             <div class="cert__visuel cert__visuel--anthropic"><img src="assets/img/badges/anthropic-ai-fluency-creative.webp" alt="Badge officiel AI Fluency for creative work" width="900" height="612" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Anthropic · Claude Academy</p>
               <h3>AI Fluency for creative work</h3>
               <p class="cert__preuve">Utiliser l&#x27;IA dans un travail créatif, avec intention et esprit critique.</p>
               <p class="cert__pied"><span class="cert__type">Certificat de réussite</span><time datetime="2026-11-06">Obtenu le 6 nov. 2026</time></p>
-              <a class="cert__lien" href="https://academy.claude.com/verify/2803d6659471a1c8f8e4b5fa75cdda53" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat AI Fluency for creative work (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, AI Fluency for creative work</span></button>
+                <a class="cert__lien" href="https://academy.claude.com/verify/2803d6659471a1c8f8e4b5fa75cdda53" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat AI Fluency for creative work (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Débutant">
+                <ul class="fiche__competences">
+                  <li>Analyser la valeur d&#x27;une œuvre : expression créative, lien humain, singularité</li>
+                  <li>Évaluer les contraintes de production : temps, effort, ressources</li>
+                  <li>Décrire sa pratique pour fixer des critères de qualité explicites</li>
+                  <li>Décider quand et comment utiliser l&#x27;IA dans un projet créatif</li>
+                  <li>Distinguer cinq façons d&#x27;utiliser l&#x27;IA, de « aucune IA » à la co-création</li>
+                  <li>Documenter ses choix, de la pratique jusqu&#x27;à la décision</li>
+                </ul>
+                <p class="fiche__pour-vous">Vos projets créatifs (affiches, musique, vidéo) avec une IA utilisée à bon escient, sans perdre votre identité.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--google">
+          <article id="badge-agent-fundamentals" class="cert cert--google">
             <div class="cert__visuel cert__visuel--google"><img src="assets/img/badges/google-agent-fundamentals.png" alt="Badge officiel Agent Fundamentals" width="604" height="548" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Google Cloud · Google Skills</p>
               <h3>Agent Fundamentals</h3>
               <p class="cert__preuve">Les fondamentaux des agents IA.</p>
               <p class="cert__pied"><span class="cert__type">Completion badge</span><time datetime="2026-11-04">Obtenu le 4 nov. 2026</time></p>
-              <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, Agent Fundamentals</span></button>
+                <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden>
+                <ul class="fiche__competences">
+                  <li>Comprendre ce qu&#x27;est un agent IA et comment il fonctionne</li>
+                  <li>Savoir quand un agent est la bonne solution, et quand il ne l&#x27;est pas</li>
+                  <li>Repérer où les agents apportent de la valeur en entreprise</li>
+                </ul>
+                <p class="fiche__pour-vous">Un conseil honnête : un agent IA quand c&#x27;est utile, une automatisation simple quand cela suffit.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--google">
+          <article id="badge-build-agent-skills-with-google" class="cert cert--google">
             <div class="cert__visuel cert__visuel--google"><img src="assets/img/badges/google-build-agent-skills.png" alt="Badge officiel Build Agent Skills with Google" width="604" height="548" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Google Cloud · Google Skills</p>
               <h3>Build Agent Skills with Google</h3>
               <p class="cert__preuve">Créer des compétences réutilisables pour des agents IA.</p>
               <p class="cert__pied"><span class="cert__type">Completion badge</span><time datetime="2026-11-04">Obtenu le 4 nov. 2026</time></p>
-              <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, Build Agent Skills with Google</span></button>
+                <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Intermédiaire" data-duree="2 h 15">
+                <ul class="fiche__competences">
+                  <li>Créer des skills qui transmettent à un agent la connaissance d&#x27;un métier</li>
+                  <li>Tester une skill en local avant de la déployer</li>
+                  <li>Déployer et partager des skills à l&#x27;échelle d&#x27;une entreprise</li>
+                  <li>Utiliser les outils d&#x27;agents de Google : Antigravity, Agent Development Kit (ADK)</li>
+                </ul>
+                <p class="fiche__pour-vous">Des agents qui connaissent vos procédures et votre vocabulaire.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--google">
+          <article id="badge-build-collaborative-multi-agent-systems-with-adk-mcp" class="cert cert--google">
             <div class="cert__visuel cert__visuel--google"><img src="assets/img/badges/google-multi-agent-adk-mcp.png" alt="Badge officiel Build Collaborative Multi-Agent Systems with ADK &amp; MCP" width="604" height="548" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Google Cloud · Google Skills</p>
               <h3>Build Collaborative Multi-Agent Systems with ADK &amp; MCP</h3>
               <p class="cert__preuve">Faire collaborer plusieurs agents avec ADK et le protocole MCP.</p>
               <p class="cert__pied"><span class="cert__type">Completion badge</span><time datetime="2026-11">Obtenu en nov. 2026</time></p>
-              <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, Build Collaborative Multi-Agent Systems with ADK &amp; MCP</span></button>
+                <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-duree="30 min">
+                <ul class="fiche__competences">
+                  <li>Concevoir et coordonner plusieurs agents spécialisés avec l&#x27;Agent Development Kit (ADK)</li>
+                  <li>Connecter des outils externes avec le protocole MCP</li>
+                  <li>Encadrer les agents avec des garde-fous sur mesure</li>
+                  <li>Déployer une organisation d&#x27;agents capable de grandir</li>
+                </ul>
+                <p class="fiche__pour-vous">Pour les besoins complexes : plusieurs agents spécialisés qui travaillent ensemble, sous contrôle.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--google">
+          <article id="badge-use-agent-skills-with-multi-agent-systems" class="cert cert--google">
             <div class="cert__visuel cert__visuel--google"><img src="assets/img/badges/google-use-agent-skills-multi-agent.png" alt="Badge officiel Use Agent Skills with Multi-Agent Systems" width="604" height="404" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Google Cloud · Google Skills</p>
               <h3>Use Agent Skills with Multi-Agent Systems</h3>
               <p class="cert__preuve">Badge de compétence validé par des exercices pratiques.</p>
               <p class="cert__pied"><span class="cert__type">Skill badge</span><time datetime="2026-11">Obtenu en nov. 2026</time></p>
-              <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, Use Agent Skills with Multi-Agent Systems</span></button>
+                <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Intermédiaire" data-duree="1 h 45">
+                <ul class="fiche__competences">
+                  <li>Construire des systèmes de plusieurs agents avec ADK</li>
+                  <li>Faire communiquer des agents entre eux avec le protocole Agent-to-Agent (A2A)</li>
+                  <li>Intégrer des outils externes avec MCP</li>
+                  <li>Déployer une solution multi-agents sur Google Cloud</li>
+                  <li>Compétences validées par un exercice pratique noté (challenge lab)</li>
+                </ul>
+                <p class="fiche__pour-vous">Des compétences vérifiées en conditions réelles, pas seulement de la théorie.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--google">
+          <article id="badge-create-your-first-gemini-enterprise-application" class="cert cert--google">
             <div class="cert__visuel cert__visuel--google"><img src="assets/img/badges/google-gemini-enterprise-app.png" alt="Badge officiel Create Your First Gemini Enterprise Application" width="244" height="164" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Google Cloud · Google Skills</p>
               <h3>Create Your First Gemini Enterprise Application</h3>
               <p class="cert__preuve">Créer une première application avec Gemini Enterprise, validée par des exercices pratiques.</p>
               <p class="cert__pied"><span class="cert__type">Skill badge</span><time datetime="2026-11-05">Obtenu le 5 nov. 2026</time></p>
-              <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, Create Your First Gemini Enterprise Application</span></button>
+                <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Débutant">
+                <ul class="fiche__competences">
+                  <li>Créer une application Gemini Enterprise</li>
+                  <li>Connecter plusieurs sources de données d&#x27;une entreprise</li>
+                  <li>Mettre en place un moteur de recherche et d&#x27;analyse unifié sur ces données</li>
+                  <li>Compétences validées par un exercice pratique noté</li>
+                </ul>
+                <p class="fiche__pour-vous">Un assistant qui retrouve l&#x27;information dans vos documents et vos outils, en un seul endroit.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--google">
+          <article id="badge-enterprise-agents-and-use-cases" class="cert cert--google">
             <div class="cert__visuel cert__visuel--google"><img src="assets/img/badges/google-enterprise-agents.png" alt="Badge officiel Enterprise Agents and Use Cases" width="244" height="222" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">Google Cloud · Google Skills</p>
               <h3>Enterprise Agents and Use Cases</h3>
               <p class="cert__preuve">Les agents IA en entreprise et leurs cas d&#x27;usage concrets.</p>
               <p class="cert__pied"><span class="cert__type">Completion badge</span><time datetime="2026-11-05">Obtenu le 5 nov. 2026</time></p>
-              <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, Enterprise Agents and Use Cases</span></button>
+                <a class="cert__lien" href="#" data-reseau="profilGoogleSkills" hidden target="_blank" rel="noopener">Voir le profil<span class="visuellement-cache"> Google Skills (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden>
+                <ul class="fiche__competences">
+                  <li>Relier chaque type d&#x27;agent à un cas d&#x27;usage et à des indicateurs (KPI)</li>
+                  <li>Identifier les quatre composants d&#x27;un flux d&#x27;agents : modèles, outils, orchestration, exécution</li>
+                  <li>Choisir l&#x27;approche : agents prêts à l&#x27;emploi, sans code, avec code ou intégrations tierces</li>
+                  <li>Créer et orchestrer des agents avec Gemini Enterprise</li>
+                </ul>
+                <p class="fiche__pour-vous">Des projets IA reliés à des objectifs mesurables pour votre entreprise.</p>
+              </div>
             </div>
           </article>
-          <article class="cert cert--n8n">
+          <article id="badge-n8n-quickstart" class="cert cert--n8n">
             <div class="cert__visuel cert__visuel--n8n"><img src="assets/img/badges/n8n-quickstart.webp" alt="Certificat officiel n8n Quickstart" width="900" height="636" loading="lazy"></div>
             <div class="cert__corps">
               <p class="cert__org">n8n · n8n Academy</p>
               <h3>n8n Quickstart</h3>
               <p class="cert__preuve">Automatiser des processus avec n8n, l&#x27;outil d&#x27;automatisation de workflows.</p>
               <p class="cert__pied"><span class="cert__type">Certificat de réussite</span><time datetime="2026-11-06">Obtenu le 6 nov. 2026</time></p>
-              <a class="cert__lien" href="https://learn.n8n.io/certificates/5f0cf7599d6f4d75b1f17cac571c493d" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat n8n Quickstart (nouvel onglet)</span></a>
+              <div class="cert__actions">
+                <button type="button" class="cert__ouvrir" hidden>Voir la fiche<span class="visuellement-cache"> : compétences acquises, n8n Quickstart</span></button>
+                <a class="cert__lien" href="https://learn.n8n.io/certificates/5f0cf7599d6f4d75b1f17cac571c493d" target="_blank" rel="noopener">Vérifier<span class="visuellement-cache"> le certificat n8n Quickstart (nouvel onglet)</span></a>
+              </div>
+              <div class="cert__fiche" hidden data-niveau="Débutant">
+                <ul class="fiche__competences">
+                  <li>Construire ses premiers workflows d&#x27;automatisation dans n8n</li>
+                  <li>Utiliser les déclencheurs et la planification</li>
+                  <li>Transformer, associer et fusionner des données entre les étapes</li>
+                  <li>Gérer les erreurs d&#x27;un workflow</li>
+                  <li>Créer un agent IA connecté à de vraies données</li>
+                </ul>
+                <p class="fiche__pour-vous">Des automatisations visuelles, faciles à maintenir, qui relient vos outils entre eux.</p>
+              </div>
             </div>
           </article>
         </div>
@@ -348,7 +551,7 @@
                 <td data-label="Organisme"><span class="tableau__org"><span class="medaille medaille--google" aria-hidden="true"><span class="medaille__sigle">G</span><span class="medaille__etat" aria-hidden="true">✓</span></span><span>Google Cloud<small>Google Skills</small></span></span></td>
                 <th scope="row" data-label="Formation">Build Agent Skills with Google</th>
                 <td data-label="Type">Completion badge</td>
-                <td data-label="Niveau">—</td>
+                <td data-label="Niveau">Intermédiaire</td>
                 <td data-label="Coût">Gratuit</td>
                 <td data-label="Statut"><span class="statut statut--obtenu">Obtenu · 4 nov. 2026</span></td>
               </tr>
@@ -498,6 +701,19 @@
         </div>
       </div>
     </section>
+    <!-- Fiche détaillée d'un badge : remplie par assets/js/site.js à partir de la carte cliquée -->
+    <dialog class="fiche" id="fiche" aria-labelledby="fiche-titre">
+      <div class="fiche__cadre">
+        <button type="button" class="fiche__fermer" data-fiche-fermer><span aria-hidden="true">×</span><span class="visuellement-cache">Fermer la fiche</span></button>
+        <div class="fiche__contenu" data-fiche-contenu></div>
+        <div class="fiche__nav">
+          <button type="button" class="fiche__suivre" data-fiche-pas="-1"><span aria-hidden="true">←</span> Précédent</button>
+          <span class="fiche__position" data-fiche-position></span>
+          <button type="button" class="fiche__suivre" data-fiche-pas="1">Suivant <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="visuellement-cache" aria-live="polite" data-fiche-annonce></p>
+      </div>
+    </dialog>
   </main>
 
   <footer class="pied">
