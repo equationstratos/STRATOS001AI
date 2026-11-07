@@ -462,7 +462,9 @@ p { margin: 0 0 1rem; }
 .medaille--microsoft { --m: conic-gradient(#f25022 0 25%, #7fba00 0 50%, #00a4ef 0 75%, #ffb900 0); --m-ombre: rgba(0, 164, 239, 0.6); }
 .medaille--github { --m: linear-gradient(160deg, #a77bf3, #6e40c9); --m-ombre: rgba(137, 87, 229, 0.7); }
 .medaille--n8n { --m: linear-gradient(160deg, #ff7f9c, #c8324f); --m-ombre: rgba(234, 75, 113, 0.7); }
+.medaille--cisco { --m: linear-gradient(160deg, #5fd4f7, #0479b8); --m-ombre: rgba(4, 159, 217, 0.7); }
 .medaille--ibm .medaille__sigle, .medaille--microsoft .medaille__sigle, .medaille--github .medaille__sigle, .medaille--n8n .medaille__sigle { font-size: 0.8rem; }
+.medaille--cisco .medaille__sigle { font-size: 0.72rem; }
 
 /* Cartes des badges obtenus */
 .cert-grille { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
@@ -479,6 +481,7 @@ p { margin: 0 0 1rem; }
 .cert--microsoft { --c: #00a4ef; }
 .cert--github { --c: #8957e5; }
 .cert--n8n { --c: #ea4b71; }
+.cert--cisco { --c: #049fd9; }
 /* Visuel officiel du badge (PNG ou WebP), à la même hauteur pour toutes les cartes */
 .cert__visuel { position: relative; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 10px; }
 .cert__visuel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
@@ -586,6 +589,7 @@ html:has(.fiche[open]) { overflow: hidden; }
 .tableau-cert .medaille { width: 36px; height: 36px; }
 .tableau-cert .medaille__sigle { width: calc(100% - 6px); height: calc(100% - 6px); font-size: 0.68rem; }
 .tableau-cert .medaille--ibm .medaille__sigle, .tableau-cert .medaille--microsoft .medaille__sigle, .tableau-cert .medaille--github .medaille__sigle, .tableau-cert .medaille--n8n .medaille__sigle { font-size: 0.56rem; }
+.tableau-cert .medaille--cisco .medaille__sigle { font-size: 0.5rem; letter-spacing: -0.02em; }
 .tableau-cert .medaille__etat { width: 15px; height: 15px; font-size: 0.5rem; right: -3px; bottom: -3px; border-width: 1.5px; }
 .tableau-cert .ligne--prevu .medaille { filter: saturate(0.35) brightness(0.8); }
 .tableau-cert .ligne--encours .medaille { filter: saturate(0.7); }
