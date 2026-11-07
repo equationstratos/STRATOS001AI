@@ -594,7 +594,7 @@ html:has(.fiche[open]) { overflow: hidden; }
 .tableau-cert .medaille--cisco .medaille__sigle, .tableau-cert .medaille--make .medaille__sigle { font-size: 0.5rem; letter-spacing: -0.02em; }
 .tableau-cert .medaille__etat { width: 15px; height: 15px; font-size: 0.5rem; right: -3px; bottom: -3px; border-width: 1.5px; }
 .tableau-cert .ligne--prevu .medaille { filter: saturate(0.35) brightness(0.8); }
-.tableau-cert .ligne--encours .medaille { filter: saturate(0.7); }
+.tableau-cert .ligne--encours .medaille, .tableau-cert .ligne--termine .medaille { filter: saturate(0.7); }
 .tableau__org { display: flex; align-items: center; gap: 12px; color: var(--texte); white-space: nowrap; }
 .tableau__org small { display: block; color: var(--texte-2); font-size: 0.78rem; }
 .tableau__badge { display: block; margin-top: 2px; font: 400 0.8rem/1.4 var(--texte-police); color: var(--texte-2); }
@@ -604,6 +604,8 @@ html:has(.fiche[open]) { overflow: hidden; }
 .statut--obtenu::before { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
 .statut--prevu { color: var(--texte-2); border: 1px dashed var(--bord-fort); }
 .statut--prevu::before { background: var(--texte-2); opacity: 0.6; }
+.statut--termine { color: var(--texte); background: rgba(255, 255, 255, 0.04); border: 1px solid var(--bord-fort); }
+.statut--termine::before { background: var(--bleu-clair); }
 .statut--encours { color: #ffc86b; background: rgba(255, 184, 77, 0.07); border: 1px solid rgba(255, 184, 77, 0.4); }
 .statut--encours::before { background: #ffb84d; box-shadow: 0 0 8px rgba(255, 184, 77, 0.8); animation: statut-pulse 2s ease-in-out infinite; }
 @keyframes statut-pulse { 50% { opacity: 0.35; } }
